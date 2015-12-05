@@ -1,17 +1,10 @@
-<ion-menu [content]="content">
-
-  <ion-toolbar>
-    <ion-title>Pages</ion-title>
-  </ion-toolbar>
 
   <ion-content>
-    <ion-list>
-      <button ion-item *ng-for="#p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
-    </ion-list>
   </ion-content>
 
-</ion-menu>
+<ion-tabs>
+  <ion-tab [root]="tab1Root" tab-title="Forecast" tab-icon="ion-ios-rainy"></ion-tab>
+  <ion-tab [root]="tab2Root" tab-title="Settings" tab-icon="settings"></ion-tab>
+</ion-tabs>
 
-<ion-nav id="nav" [root]="rootPage" #content swipe-back-enabled="false"></ion-nav>
+<ion-overlay></ion-overlay>

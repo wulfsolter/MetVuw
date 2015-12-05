@@ -2,13 +2,13 @@
 // http://twofuckingdevelopers.com/2015/04/angular-2-singleton-service/
 
 export class GlobalSettings {
-  region: string = 'nzsi';
+  forecast: string = 'rain-nzsi';
   static instance:GlobalSettings;
   static isCreating:Boolean = false;
 
   constructor() {
     if (!GlobalSettings.isCreating) {
-      throw new Error("You can't call new in Singleton instances!");
+      throw new Error("You can't call new in GlobalSettings Singleton instances!");
     }
   }
 
@@ -22,13 +22,13 @@ export class GlobalSettings {
     return GlobalSettings.instance;
   }
 
-  setRegion(region:String) {
-      this.region = region;
-      console.log('region set to:' + region);
+  setForecast(forecast:String) {
+      this.forecast = forecast;
+      console.log('forecast set to:' + forecast);
   }
 
-  getRegion() {
-      return this.region;
+  getForecast() {
+      return this.forecast;
   }
 
 }

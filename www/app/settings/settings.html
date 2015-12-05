@@ -1,0 +1,15 @@
+<ion-navbar *navbar>
+  <ion-title>Home</ion-title>
+</ion-navbar>
+
+<ion-content padding class="getting-started">
+
+  <h3>Settings</h3>
+  <p>All views "Rain" unless stated otherwise</p>
+
+  <ion-list radio-group>
+    <ion-radio *ng-for="#forecast of forecasts" (click)="itemSelected(forecast)" [checked]="forecast.value==selectedForecast" [value]="forecast.value">
+      {{forecast.label}}
+    </ion-radio>
+  </ion-list radio-group>
+</ion-content>

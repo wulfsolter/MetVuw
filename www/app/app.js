@@ -1,7 +1,7 @@
 import {App, IonicApp, Platform} from 'ionic/ionic';
 
-import {HomePage} from './home/home';
-import {RainPage} from './rain/rain';
+import {ForecastPage} from './forecast/forecast';
+import {SettingsPage} from './settings/settings';
 
 import "./app.scss";
 
@@ -17,15 +17,11 @@ class MyApp {
     this.platform = platform;
     this.initializeApp();
 
-    // set our app's pages
-    this.pages = [
-      { title: 'Home',          component: HomePage},
-      { title: 'Forecast Rain', component: RainPage},
-    ];
+    this.tab1Root = ForecastPage;
+    this.tab2Root = SettingsPage;
 
-    // make HelloIonicPage the root (or first) page
-    // this.rootPage = HomePage;
-    this.rootPage = RainPage;
+    // make home page the Forecast page
+    this.rootPage = ForecastPage;
   }
 
   initializeApp() {
@@ -48,13 +44,5 @@ class MyApp {
         StatusBar.styleDefault();
       }
     });
-  }
-
-  openPage(page) {
-    // close the menu when clicking a link from the menu
-    this.app.getComponent('menu').close();
-    // navigate to the new page if it is not the current page
-    let nav = this.app.getComponent('nav');
-    nav.setRoot(page.component);
   }
 }

@@ -2,14 +2,15 @@ import {Page, NavController} from 'ionic/ionic';
 import {GlobalSettings} from '../GlobalSettings';
 
 @Page({
-  templateUrl: 'app/rain/rain.html',
+  templateUrl: 'app/forecast/forecast.html',
   providers: [GlobalSettings],
 })
 
-export class RainPage {
+export class ForecastPage {
   constructor(nav: NavController) {
     this.nav = nav;
     this.playing = false;
+    this.sliderMax = 240;
 
     // Time between now and when the forecast was rendered
     this.nowPointerOffset =  Math.floor((Date.now() - ((Math.floor(Date.now()/86400000) * 86400000) - 21600000))/3600000);
@@ -24,13 +25,29 @@ export class RainPage {
     this.pointer = this.pointerMinimum;
 
     this.updateImgPath();
+    this.updateSliderMax();
+  }
 
-    // console.log(this.nowPointerOffset);
+  onPageWillEnter() {
+    // We're coming back into this page, best refresh images
+    this.updateSliderMax();
 
+    if (this.pointer > this.sliderMax) {
+      this.pointer = this.sliderMax;
+    }
+
+    this.updateImgPath();
+  }
+
+  updateSliderMax() {
+    if (GlobalSettings.getInstance().getForecast().substr(0,4) === 'wind') {
+      this.sliderMax = 168;
+    } else {
+      this.sliderMax = 240;
+    }
   }
 
   updateImgPath() {
-
     var padding = function(val) {
       if (val > 240) {
         return padding(val - 240);
@@ -41,18 +58,21 @@ export class RainPage {
       }
     };
 
-    var region = GlobalSettings.getInstance().getRegion();
-    // console.log(this.gSet);
+    var forecast = GlobalSettings.getInstance().getForecast();
 
-    this.imgPath      = this.forecastPath + '/rain-' + region + '-' + this.forecastPath + '-' + padding(this.pointer) + '.gif';
-    this.imgPrefetch1 = this.forecastPath + '/rain-' + region + '-' + this.forecastPath + '-' + padding(this.pointer + 6) + '.gif';
-    this.imgPrefetch2 = this.forecastPath + '/rain-' + region + '-' + this.forecastPath + '-' + padding(this.pointer + 12) + '.gif';
-    this.imgPrefetch3 = this.forecastPath + '/rain-' + region + '-' + this.forecastPath + '-' + padding(this.pointer + 18) + '.gif';
+    this.imgPath      = this.forecastPath + '/' + forecast + '-' + this.forecastPath + '-' + padding(this.pointer) + '.gif';
+    this.imgPrefetch1 = this.forecastPath + '/' + forecast + '-' + this.forecastPath + '-' + padding(this.pointer + 6) + '.gif';
+    this.imgPrefetch2 = this.forecastPath + '/' + forecast + '-' + this.forecastPath + '-' + padding(this.pointer + 12) + '.gif';
+    this.imgPrefetch3 = this.forecastPath + '/' + forecast + '-' + this.forecastPath + '-' + padding(this.pointer + 18) + '.gif';
   }
 
   next() {
-    if (this.pointer >= 240) {
+    if (GlobalSettings.getInstance().getForecast().substr(0, 4) === 'rain' && this.pointer >= 240) {
       // only a 10 day (240hour) forceast
+      return;
+    }
+    if (GlobalSettings.getInstance().getForecast().substr(0, 4) === 'wind' && this.pointer >= 168) {
+      // only a 7 day (168hour) forceast
       return;
     }
     this.pointer += 6;
@@ -68,11 +88,14 @@ export class RainPage {
     this.updateImgPath();
   }
 
+  set(evt) {
+    this.pointer = parseInt(evt.srcElement.value);
+    this.updateImgPath();
+  }
+
   loopingNext() {
-    if (this.pointer >= 240) {
+    if (this.pointer >= this.sliderMax) {
       this.pointer = this.pointerMinimum;
-    } else {
-      this.pointer += 6;
     }
 
     if (this.playing) {
@@ -85,6 +108,7 @@ export class RainPage {
         var timeLength = Date.now() - timeStart;
         if (timeLength < 250) {
           setTimeout(() => {
+            this.pointer += 6;
             console.log('waited ' + (250 - timeLength));
             this.updateImgPath();
             setTimeout(() => {
@@ -92,6 +116,7 @@ export class RainPage {
             }, 250);
           }, (250 - timeLength));
         } else {
+          this.pointer += 6;
           this.updateImgPath();
           console.log('took ' + timeLength + ' to load image');
           setTimeout(() => {
