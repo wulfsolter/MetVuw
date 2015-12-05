@@ -10,16 +10,16 @@
 
     <ion-row>
       <ion-col>
-        <button full (click)="prev()"><icon arrow-back></icon>Prev</button>
+        <button large full (click)="prev()"><icon arrow-back></icon>Prev</button>
       </ion-col>
       <ion-col>
         <div style="text-align:center">
-          <h2>+{{(pointer - nowPointerOffset)}}</h2>
-          Hours
+          <h2 style="margin-bottom:0;">{{(pointer - nowPointerOffset)}}</h2>
+          Hours<br>future
         </div>
       </ion-col>
       <ion-col>
-        <button full (click)="next()">Next<icon arrow-forward></icon></button>
+        <button large full (click)="next()">Next<icon arrow-forward></icon></button>
       </ion-col>
     </ion-row>
 
@@ -32,7 +32,7 @@
     <ion-row>
       <ion-col>
         <!-- nexted in row/col to have same padding as prev/next buttons -->
-        <button full [attr.style]="playing ? 'background:green' : ''" (click)="autoPlay()">Autoplay</button>
+        <button full [attr.style]="playing ? 'background:green' : ''" (click)="autoPlay()">Play &amp; Loop</button>
       </ion-col>
     </ion-row>
 
