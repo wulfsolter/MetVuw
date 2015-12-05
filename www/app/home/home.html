@@ -9,13 +9,13 @@
 
 <ion-content padding class="getting-started">
 
-  <h3>Welcome to your first Ionic app!</h3>
+  <h3>Select Region</h3>
 
-  <ion-list>
-    <ion-item *ng-for="#region of regions" (click)="itemSelected(region)">
+  <ion-list radio-group>
+    <ion-radio *ng-for="#region of regions" (click)="itemSelected(region)" [checked]="region.value==selectedRegion" [value]="region.value">
       {{region.label}}
-    </ion-item>
-  </ion-list>
+    </ion-radio>
+  </ion-list radio-group>
 
   <p>
     <button primary menu-toggle>Toggle Menu</button>

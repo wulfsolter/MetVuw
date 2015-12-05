@@ -14,7 +14,19 @@
 
     <ion-row>
       <ion-col>
+        <input id="slider1" type="range" min="{{pointerMinimum}}" max="240" step="6" [value]="pointer" style="width:100%" />
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
         <button full (click)="prev()"><icon arrow-back></icon>Prev</button>
+      </ion-col>
+      <ion-col>
+        <div style="text-align:center">
+          <h2>+{{(pointer - nowPointerOffset)}}</h2>
+          Hours
+        </div>
       </ion-col>
       <ion-col>
         <button full (click)="next()">Next<icon arrow-forward></icon></button>
@@ -23,14 +35,15 @@
     <ion-row>
       <ion-col>
         <!-- nexted in row/col to have same padding as prev/next buttons -->
-        <button full (click)="autoPlay()">Autoplay</button>
+        <button full [attr.style]="playing ? 'background:green' : ''" (click)="autoPlay()">Autoplay</button>
       </ion-col>
     </ion-row>
 
   <!-- Prefetch images - hidden with CSS but loaded in advance -->
     <div class="img-lookahead">
-      <img src="http://metvuw.com/forecast/{{imgPrefetch1}}">
-      <img src="http://metvuw.com/forecast/{{imgPrefetch2}}">
+      <img id="rainPrefetch1" src="http://metvuw.com/forecast/{{imgPrefetch1}}">
+      <img id="rainPrefetch2" src="http://metvuw.com/forecast/{{imgPrefetch2}}">
+      <img id="rainPrefetch3" src="http://metvuw.com/forecast/{{imgPrefetch3}}">
     </div>
 
   </p>

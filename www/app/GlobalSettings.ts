@@ -1,5 +1,8 @@
+// Angular2 Singleton Pattern by @elecash -  Raúl Jiménez
+// http://twofuckingdevelopers.com/2015/04/angular-2-singleton-service/
+
 export class GlobalSettings {
-  region: string;
+  region: string = 'nzsi';
   static instance:GlobalSettings;
   static isCreating:Boolean = false;
 
@@ -21,6 +24,7 @@ export class GlobalSettings {
 
   setRegion(region:String) {
       this.region = region;
+      console.log('region set to:' + region);
   }
 
   getRegion() {
