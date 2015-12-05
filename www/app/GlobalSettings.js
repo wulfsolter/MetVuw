@@ -1,8 +1,10 @@
 // Angular2 Singleton Pattern by @elecash -  Raúl Jiménez
 // http://twofuckingdevelopers.com/2015/04/angular-2-singleton-service/
 
+import {LocalStorage} from 'ionic/ionic';
+
 export class GlobalSettings {
-  forecast: string = 'rain-nzsi';
+  forecast: string = '';
   static instance:GlobalSettings;
   static isCreating:Boolean = false;
 
@@ -23,12 +25,20 @@ export class GlobalSettings {
   }
 
   setForecast(forecast:String) {
-      this.forecast = forecast;
-      console.log('forecast set to:' + forecast);
+    window.localStorage.setItem('forecast', forecast);
+    this.forecast = forecast;
+    console.log('forecast sssset to:' + forecast);
   }
 
   getForecast() {
+    if (this.forecast) {
       return this.forecast;
-  }
+    }
+    if (window.localStorage.getItem('forecast')) {
+      this.forecast = window.localStorage.getItem('forecast');
+      return this.forecast;
+    }
 
+    return 'rain-world';
+  }
 }

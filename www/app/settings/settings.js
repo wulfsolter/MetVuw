@@ -10,7 +10,7 @@ export class SettingsPage {
   constructor(nav: NavController) {
     this.nav = nav;
 
-    this.selectedForecast = GlobalSettings.getInstance().getForecast() ||  'rain-nzsi';
+    this.selectedForecast = GlobalSettings.getInstance().getForecast();
     GlobalSettings.getInstance().setForecast(this.selectedForecast);
 
     this.forecasts = [
