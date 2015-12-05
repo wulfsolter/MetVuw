@@ -52,6 +52,8 @@ export class SettingsPage {
   }
 
   itemSelected(forecast) {
-    GlobalSettings.getInstance().setForecast(forecast.value);
+    GlobalSettings.getInstance().setForecast(forecast);
+    this.nav.parent.select(0);
+    // console.log(this.nav.parent.select(0));
   }
 }

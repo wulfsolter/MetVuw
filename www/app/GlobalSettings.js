@@ -25,9 +25,9 @@ export class GlobalSettings {
   }
 
   setForecast(forecast:String) {
-    window.localStorage.setItem('forecast', forecast);
+    window.localStorage.setItem('forecast', JSON.stringify(forecast));
     this.forecast = forecast;
-    console.log('forecast sssset to:' + forecast);
+    console.log('forecast set to:' + JSON.stringify(forecast));
   }
 
   getForecast() {
@@ -35,10 +35,10 @@ export class GlobalSettings {
       return this.forecast;
     }
     if (window.localStorage.getItem('forecast')) {
-      this.forecast = window.localStorage.getItem('forecast');
+      this.forecast = JSON.parse(window.localStorage.getItem('forecast'));
       return this.forecast;
     }
 
-    return 'rain-world';
+    return {label: 'WORLD - World', value: 'rain-world'};
   }
 }

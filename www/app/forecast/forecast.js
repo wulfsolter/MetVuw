@@ -40,7 +40,7 @@ export class ForecastPage {
   }
 
   updateSliderMax() {
-    if (GlobalSettings.getInstance().getForecast().substr(0,4) === 'wind') {
+    if (GlobalSettings.getInstance().getForecast().value.substr(0,4) === 'wind') {
       this.sliderMax = 168;
     } else {
       this.sliderMax = 240;
@@ -58,20 +58,20 @@ export class ForecastPage {
       }
     };
 
-    var forecast = GlobalSettings.getInstance().getForecast();
+    this.forecast = GlobalSettings.getInstance().getForecast();
 
-    this.imgPath      = this.forecastPath + '/' + forecast + '-' + this.forecastPath + '-' + padding(this.pointer) + '.gif';
-    this.imgPrefetch1 = this.forecastPath + '/' + forecast + '-' + this.forecastPath + '-' + padding(this.pointer + 6) + '.gif';
-    this.imgPrefetch2 = this.forecastPath + '/' + forecast + '-' + this.forecastPath + '-' + padding(this.pointer + 12) + '.gif';
-    this.imgPrefetch3 = this.forecastPath + '/' + forecast + '-' + this.forecastPath + '-' + padding(this.pointer + 18) + '.gif';
+    this.imgPath      = this.forecastPath + '/' + this.forecast.value + '-' + this.forecastPath + '-' + padding(this.pointer) + '.gif';
+    this.imgPrefetch1 = this.forecastPath + '/' + this.forecast.value + '-' + this.forecastPath + '-' + padding(this.pointer + 6) + '.gif';
+    this.imgPrefetch2 = this.forecastPath + '/' + this.forecast.value + '-' + this.forecastPath + '-' + padding(this.pointer + 12) + '.gif';
+    this.imgPrefetch3 = this.forecastPath + '/' + this.forecast.value + '-' + this.forecastPath + '-' + padding(this.pointer + 18) + '.gif';
   }
 
   next() {
-    if (GlobalSettings.getInstance().getForecast().substr(0, 4) === 'rain' && this.pointer >= 240) {
+    if (GlobalSettings.getInstance().getForecast().value.substr(0, 4) === 'rain' && this.pointer >= 240) {
       // only a 10 day (240hour) forceast
       return;
     }
-    if (GlobalSettings.getInstance().getForecast().substr(0, 4) === 'wind' && this.pointer >= 168) {
+    if (GlobalSettings.getInstance().getForecast().value.substr(0, 4) === 'wind' && this.pointer >= 168) {
       // only a 7 day (168hour) forceast
       return;
     }
