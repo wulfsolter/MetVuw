@@ -1,0 +1,24 @@
+
+<ion-navbar *navbar>
+  <a menu-toggle>
+    <icon menu></icon>
+  </a>
+  <ion-title>Home</ion-title>
+</ion-navbar>
+
+
+<ion-content padding class="getting-started">
+
+  <h3>Welcome to your first Ionic app!</h3>
+
+  <ion-list>
+    <ion-item *ng-for="#region of regions" (click)="itemSelected(region)">
+      {{region.label}}
+    </ion-item>
+  </ion-list>
+
+  <p>
+    <button primary menu-toggle>Toggle Menu</button>
+  </p>
+
+</ion-content>

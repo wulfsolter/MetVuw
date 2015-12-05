@@ -1,0 +1,38 @@
+
+<ion-navbar *navbar>
+  <a menu-toggle>
+    <icon menu></icon>
+  </a>
+  <ion-title>Rain</ion-title>
+</ion-navbar>
+
+<ion-content padding class="getting-started">
+    <div>
+      <!-- <img (swipe)="swipe()" (click)="click()" src="http://metvuw.com/forecast/{{imgPath}}" width="100%" height="100%"> -->
+      <img src="http://metvuw.com/forecast/{{imgPath}}" width="100%" height="100%">
+    <div>
+
+    <ion-row>
+      <ion-col>
+        <button full (click)="prev()"><icon arrow-back></icon>Prev</button>
+      </ion-col>
+      <ion-col>
+        <button full (click)="next()">Next<icon arrow-forward></icon></button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <!-- nexted in row/col to have same padding as prev/next buttons -->
+        <button full (click)="autoPlay()">Autoplay</button>
+      </ion-col>
+    </ion-row>
+
+  <!-- Prefetch images - hidden with CSS but loaded in advance -->
+    <div class="img-lookahead">
+      <img src="http://metvuw.com/forecast/{{imgPrefetch1}}">
+      <img src="http://metvuw.com/forecast/{{imgPrefetch2}}">
+    </div>
+
+  </p>
+
+</ion-content>
