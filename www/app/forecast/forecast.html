@@ -4,8 +4,7 @@
 
 <ion-content>
     <div>
-      <!-- <img (swipe)="swipe()" (click)="click()" src="http://metvuw.com/forecast/{{imgPath}}" width="100%" height="100%"> -->
-      <img src="http://metvuw.com/forecast/{{imgPath}}" width="100%" height="100%">
+      <img (swipeLeft)="next()" (swipeRight)="prev()" src="http://metvuw.com/forecast/{{imgPath}}" width="100%" height="100%">
     <div>
 
     <ion-row>
