@@ -1,0 +1,7 @@
+<div class="scale">
+  <ul>
+    <li *ng-for="#entry of entries" [style.background-color]="entry.color">
+      {{entry.value}}
+    </li>
+  </ul>
+</div>

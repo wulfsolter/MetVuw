@@ -1,5 +1,5 @@
 import {Page, NavController} from 'ionic/ionic';
-import {GlobalSettings} from '../GlobalSettings';
+import {GlobalSettings} from '../GlobalSettings/GlobalSettings';
 
 @Page({
   templateUrl: 'app/settings/settings.html'
