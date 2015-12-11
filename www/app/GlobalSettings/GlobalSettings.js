@@ -27,7 +27,6 @@ export class GlobalSettings {
   setForecast(forecast:String) {
     window.localStorage.setItem('forecast', JSON.stringify(forecast));
     this.forecast = forecast;
-    console.log('forecast set to:' + JSON.stringify(forecast));
   }
 
   getForecast() {
