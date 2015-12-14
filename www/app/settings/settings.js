@@ -48,12 +48,10 @@ export class SettingsPage {
       { label: 'ATLANTIC - South Atlantic',      value: 'rain-satlantic' },
       { label: 'WORLD - World',                  value: 'rain-world' },
     ];
-
   }
 
   itemSelected(forecast) {
     GlobalSettings.getInstance().setForecast(forecast);
-    this.nav.parent.select(0);
-    // console.log(this.nav.parent.select(0));
+    this.nav.parent.select(0); // go back to forecast page
   }
 }

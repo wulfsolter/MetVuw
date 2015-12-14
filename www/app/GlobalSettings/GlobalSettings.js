@@ -25,7 +25,7 @@ export class GlobalSettings {
   }
 
   setForecast(forecast:String) {
-    window.localStorage.setItem('forecast', JSON.stringify(forecast));
+    localStorage.setItem('forecast', JSON.stringify(forecast));
     this.forecast = forecast;
   }
 
@@ -33,8 +33,8 @@ export class GlobalSettings {
     if (this.forecast) {
       return this.forecast;
     }
-    if (window.localStorage.getItem('forecast')) {
-      this.forecast = JSON.parse(window.localStorage.getItem('forecast'));
+    if (localStorage.getItem('forecast')) {
+      this.forecast = JSON.parse(localStorage.getItem('forecast'));
       return this.forecast;
     }
 

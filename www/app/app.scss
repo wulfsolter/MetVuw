@@ -49,3 +49,18 @@ $colors: (
   text-align: center;
   width: 5%;
 }
+
+.forecastImages {
+  position: relative;
+}
+
+.forecastSpinner {
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+
+.forecastMain img {
+  width: 100%;
+  height: 100%;
+}
