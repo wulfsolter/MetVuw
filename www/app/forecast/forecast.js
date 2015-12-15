@@ -17,17 +17,41 @@ export class ForecastPage {
     // Time between now and when the forecast was rendered
     this.nowPointerOffset =  Math.floor((Date.now() - ((Math.floor(Date.now()/86400000) * 86400000) - 21600000))/3600000);
 
-    // get latest rendered forecast in Zulu (rendered at 7am NZDT)
-    this.forecastPath = new Date((Math.floor(Date.now()/86400000) * 86400000) - 21600000).toISOString().replace(/[^0-9]+/g, '').substr(0,10);
-
     // usually we will be ahead of the forecast, but by how much
     this.pointerMinimum = Math.ceil(this.nowPointerOffset/6) * 6 || 6;
 
     // in the constructor so set pointer to minimum
     this.pointer = this.pointerMinimum;
 
+    this.setForecastPath();
     this.updateImgPath();
     this.updateSliderMax();
+  }
+
+  setForecastPath(offset) {
+
+    var internalOffset = 21600000;
+    if (offset) {
+      console.log(offset);
+      internalOffset += offset;
+    }
+
+    // get latest rendered forecast in Zulu (rendered at 7am NZDT)
+    this.forecastPath = new Date((Math.floor(Date.now()/86400000) * 86400000) - internalOffset).toISOString().replace(/[^0-9]+/g, '').substr(0,10);
+
+      var image = new Image();
+      image.onload = () => {
+        this.updateImgPath();
+        //
+      }
+      image.onerror = (err) => {
+        // Probably a 404 for the render - rewind another 6 hrs
+        this.setForecastPath(21600000);
+      }
+
+      // Now that we've set event handlers, give the image a path and get started
+      image.src = "http://metvuw.com/forecast/" + this.forecastPath + '/rain-nzsi-' + this.forecastPath + '-06.gif';
+
   }
 
   onPageWillEnter() {
@@ -126,7 +150,8 @@ export class ForecastPage {
           }, 250);
         }
       }
-      image.onerror = function () {
+      image.onerror = function (err) {
+        console.log(err);
         console.error("Cannot load image");
         //do something else...
       }
