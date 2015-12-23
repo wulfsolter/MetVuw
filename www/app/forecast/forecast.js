@@ -48,7 +48,7 @@ export class ForecastPage {
     const sixHours = 21600000;
 
     this.forecast = GlobalSettings.getInstance().getForecast();
-    this.internalOffset = sixHours;
+    if (!this.internalOffset) this.internalOffset = sixHours;
 
     if (offset) {
       this.internalOffset += offset;
