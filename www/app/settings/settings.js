@@ -52,6 +52,8 @@ export class SettingsPage {
 
   itemSelected(forecast) {
     GlobalSettings.getInstance().setForecast(forecast);
+    GlobalSettings.getInstance().setOffset(null);
     this.nav.parent.select(0); // go back to forecast page
+    console.log('Selected ' + forecast.label);
   }
 }

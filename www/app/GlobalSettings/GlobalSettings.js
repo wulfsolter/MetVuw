@@ -40,4 +40,12 @@ export class GlobalSettings {
 
     return {label: 'WORLD - World', value: 'rain-world'};
   }
+
+  getOffset() {
+    return this.forecastOffset;
+  }
+
+  setOffset(Offset:String) {
+    this.forecastOffset = Offset;
+  }
 }

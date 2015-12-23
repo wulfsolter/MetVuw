@@ -42,17 +42,15 @@ export class ForecastPage {
     this.updateImgPath();
   }
 
-  setForecastPath(offset) {
+  setForecastPath() {
     // Build URL path - called on constructor (first load) and onPageWillEnter
 
     const sixHours = 21600000;
 
-    this.forecast = GlobalSettings.getInstance().getForecast();
-    if (!this.internalOffset) this.internalOffset = sixHours;
+    this.forecast       = GlobalSettings.getInstance().getForecast();
+    this.internalOffset = GlobalSettings.getInstance().getOffset();
 
-    if (offset) {
-      this.internalOffset += offset;
-    }
+    if (!this.internalOffset) this.internalOffset = sixHours;
 
     // get latest rendered forecast in Zulu (normally rendered at 7am NZDT, but sometimes at 1am NZDT)
     this.forecastPath = new Date((Math.floor(Date.now() / 86400000) * 86400000) - this.internalOffset).toISOString().replace(/[^0-9]+/g, '').substr(0,10);
@@ -65,7 +63,8 @@ export class ForecastPage {
 
     image.onerror = (err) => {
       // Probably a 404 for the render - rewind another 6 hrs
-      this.setForecastPath(sixHours);
+      GlobalSettings.getInstance().setOffset(this.internalOffset + sixHours);
+      this.setForecastPath();
     }
 
     // Now that we've set event handlers, give the image a path and get started
