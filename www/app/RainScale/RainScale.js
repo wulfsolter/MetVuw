@@ -1,3 +1,5 @@
+// Draws the scale for "rain fallen in last x hours"
+
 import {Component, View, NgFor} from 'angular2/angular2'
 
 @Component({
