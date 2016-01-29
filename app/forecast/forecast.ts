@@ -20,6 +20,7 @@ export class ForecastPage {
   private nav: NavController;
   private nowPointerOffset: number;
   private playing: boolean;
+  private playWait: number;
   private pointer: number;
   private pointerMinimum: number;
   private sliderMax: number;
@@ -28,6 +29,7 @@ export class ForecastPage {
     this.nav = nav;
     this.playing = false;
     this.sliderMax = 240;
+    this.playWait = 400;
 
     // Time between now and when the forecast was rendered
     this.nowPointerOffset =  Math.floor((Date.now() - ((Math.floor(Date.now()/86400000) * 86400000) - 21600000))/3600000);
@@ -158,26 +160,28 @@ export class ForecastPage {
       console.debug('Playing');
 
       var image = new Image();
+
       image.onload = () => {
         var timeLength = Date.now() - timeStart;
-        if (timeLength < 250) {
+        if (timeLength < this.playWait) {
           setTimeout(() => {
             this.pointer += 6;
-            console.debug('waited ' + (250 - timeLength));
+            console.debug('waited ' + (this.playWait - timeLength));
             this.updateImgPath();
             setTimeout(() => {
               this.loopingNext();
-            }, 250);
-          }, (250 - timeLength));
+            }, this.playWait);
+          }, (this.playWait - timeLength));
         } else {
           this.pointer += 6;
           this.updateImgPath();
           console.log('took ' + timeLength + ' to load image');
           setTimeout(() => {
             this.loopingNext();
-          }, 250);
+          }, this.playWait);
         }
       }
+
       image.onerror = function (err) {
         console.log(err);
         console.error("Cannot load image");
@@ -191,13 +195,13 @@ export class ForecastPage {
 
 
   autoPlay() {
-    if (this.playing === false) {
+    // Toggle playing state
+    this.playing = !this.playing;
+
+    if (this.playing === true) {
       // start playing
-      this.playing = true;
       this.loopingNext();
-    } else {
-      // stop playing
-      this.playing = false;
     }
+
   }
 }
