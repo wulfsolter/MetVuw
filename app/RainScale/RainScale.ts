@@ -2,6 +2,11 @@
 
 import {Component, View } from 'angular2/core'
 
+interface RainScaleItem {
+  value: string;
+  color: string;
+}
+
 @Component({
   selector: 'rain-scale',
   templateUrl: 'build/RainScale/RainScale.html',
@@ -11,7 +16,7 @@ import {Component, View } from 'angular2/core'
 
 export class RainScale {
 
-  public entries: Array<Object>;
+  public entries: Array<RainScaleItem>;
 
   constructor() {
     this.entries = [

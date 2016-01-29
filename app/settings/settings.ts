@@ -1,5 +1,5 @@
 import {Page, NavController} from 'ionic-framework/ionic';
-import {GlobalSettings} from '../GlobalSettings/GlobalSettings';
+import { ForecastItem, GlobalSettings} from '../GlobalSettings/GlobalSettings';
 
 @Page({
   templateUrl: 'build/settings/settings.html',
@@ -9,8 +9,8 @@ import {GlobalSettings} from '../GlobalSettings/GlobalSettings';
 export class SettingsPage {
 
   private nav: NavController;
-  public forecasts: Array<any>;
-  private selectedForecast: string;
+  public forecasts: Array<ForecastItem>;
+  private selectedForecast: ForecastItem;
 
   constructor(nav: NavController) {
     this.nav = nav;

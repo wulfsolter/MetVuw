@@ -148,14 +148,14 @@ export class ForecastPage {
   }
 
   loopingNext() {
-    if (this.pointer >= this.sliderMax) {
+    if (this.pointer >= (this.pointerMinimum + 48)) {
       this.pointer = this.pointerMinimum;
     }
 
     if (this.playing) {
 
       var timeStart = Date.now();
-      console.log('this.playing');
+      console.debug('Playing');
 
       var image = new Image();
       image.onload = () => {
@@ -163,7 +163,7 @@ export class ForecastPage {
         if (timeLength < 250) {
           setTimeout(() => {
             this.pointer += 6;
-            console.log('waited ' + (250 - timeLength));
+            console.debug('waited ' + (250 - timeLength));
             this.updateImgPath();
             setTimeout(() => {
               this.loopingNext();

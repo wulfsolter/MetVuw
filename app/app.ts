@@ -31,7 +31,7 @@ class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      console.log('Platform ready');
+      console.debug('Platform ready');
      // if (typeof StatusBar !== 'undefined') {
      //    StatusBar.styleDefault();
      //  }

@@ -1,9 +1,14 @@
 // Angular2 Singleton Pattern by @elecash -  Raúl Jiménez
 // http://twofuckingdevelopers.com/2015/04/angular-2-singleton-service/
 
+export interface ForecastItem {
+  label: string;
+  value: string;
+}
+
 export class GlobalSettings {
 
-  public forecast: string = '';
+  public forecast: ForecastItem;
   public forecastOffset: number;
 
   static instance:GlobalSettings;
@@ -18,19 +23,19 @@ export class GlobalSettings {
   static getInstance() {
     if (GlobalSettings.instance == null) {
       GlobalSettings.isCreating = true;
-      GlobalSettings.instance = new GlobalSettings();
+      GlobalSettings.instance   = new GlobalSettings();
       GlobalSettings.isCreating = false;
     }
 
     return GlobalSettings.instance;
   }
 
-  setForecast(forecast: string): void {
+  setForecast(forecast: ForecastItem): void {
     localStorage.setItem('forecast', JSON.stringify(forecast));
     this.forecast = forecast;
   }
 
-  getForecast(): Object {
+  getForecast(): ForecastItem {
     if (this.forecast) {
       return this.forecast;
     }
@@ -46,7 +51,7 @@ export class GlobalSettings {
     return this.forecastOffset;
   }
 
-  setOffset(Offset: string) {
+  setOffset(Offset: number) {
     this.forecastOffset = Offset;
   }
 }
