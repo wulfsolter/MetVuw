@@ -1,15 +1,18 @@
 // Draws the scale for "rain fallen in last x hours"
 
-import {Component, View, NgFor} from 'angular2/angular2'
+import {Component, View } from 'angular2/core'
 
 @Component({
   selector: 'rain-scale',
-  templateUrl: 'app/RainScale/RainScale.html',
+  templateUrl: 'build/RainScale/RainScale.html',
   inputs: ['entries: entries'],
-  directives: [NgFor],
+  directives: [],
 })
 
 export class RainScale {
+
+  public entries: Array<Object>;
+
   constructor() {
     this.entries = [
       { value: '1',  color: '#ff00ff' },

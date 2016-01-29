@@ -1,15 +1,20 @@
-import {App, IonicApp, Platform} from 'ionic/ionic';
+import { App, IonicApp, Platform } from 'ionic-framework/ionic';
 
 import {ForecastPage} from './forecast/forecast';
 import {SettingsPage} from './settings/settings';
 
-import "./app.scss";
-
 @App({
-  templateUrl: 'app/app.html'
+  templateUrl: 'build/app.html'
 })
 
 class MyApp {
+
+  public app: IonicApp;
+  public platform: Platform;
+  public tab1Root: any;
+  public tab2Root: any;
+  public rootPage: any;
+
   constructor(app: IonicApp, platform: Platform) {
 
     // set up our app
@@ -27,9 +32,9 @@ class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       console.log('Platform ready');
-     if (typeof StatusBar !== 'undefined') {
-        StatusBar.styleDefault();
-      }
+     // if (typeof StatusBar !== 'undefined') {
+     //    StatusBar.styleDefault();
+     //  }
     });
   }
 }

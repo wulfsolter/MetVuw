@@ -1,14 +1,29 @@
-import {Page, NavController}  from 'ionic/ionic';
+import {Page, NavController}  from 'ionic-framework/ionic';
 import {GlobalSettings}       from '../GlobalSettings/GlobalSettings';
 import {RainScale}            from '../RainScale/RainScale';
 
 @Page({
-  templateUrl: 'app/forecast/forecast.html',
+  templateUrl: 'build/forecast/forecast.html',
   providers: [GlobalSettings],
   directives: [RainScale],
 })
 
 export class ForecastPage {
+
+  private imgPath: string;
+  private imgPrefetch1: string;
+  private imgPrefetch2: string;
+  private imgPrefetch3: string;
+  private internalOffset: number;
+  private forecast: any;
+  private forecastPath: string;
+  private nav: NavController;
+  private nowPointerOffset: number;
+  private playing: boolean;
+  private pointer: number;
+  private pointerMinimum: number;
+  private sliderMax: number;
+
   constructor(nav: NavController) {
     this.nav = nav;
     this.playing = false;

@@ -1,12 +1,17 @@
-import {Page, NavController} from 'ionic/ionic';
+import {Page, NavController} from 'ionic-framework/ionic';
 import {GlobalSettings} from '../GlobalSettings/GlobalSettings';
 
 @Page({
-  templateUrl: 'app/settings/settings.html'
-  providers: [GlobalSettings],
+  templateUrl: 'build/settings/settings.html',
+  providers: [ GlobalSettings ],
 })
 
 export class SettingsPage {
+
+  private nav: NavController;
+  public forecasts: Array<any>;
+  private selectedForecast: string;
+
   constructor(nav: NavController) {
     this.nav = nav;
 
