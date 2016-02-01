@@ -11,8 +11,8 @@ export class GlobalSettings {
   public forecast: ForecastItem;
   public forecastOffset: number;
 
-  static instance:GlobalSettings;
-  static isCreating:Boolean = false;
+  static instance: GlobalSettings;
+  static isCreating: Boolean = false;
 
   constructor() {
     if (!GlobalSettings.isCreating) {
@@ -31,7 +31,7 @@ export class GlobalSettings {
   }
 
   setForecast(forecast: ForecastItem): void {
-    localStorage.setItem('forecast', JSON.stringify(forecast));
+    localStorage.setItem("forecast", JSON.stringify(forecast));
     this.forecast = forecast;
   }
 
@@ -39,12 +39,12 @@ export class GlobalSettings {
     if (this.forecast) {
       return this.forecast;
     }
-    if (localStorage.getItem('forecast')) {
-      this.forecast = JSON.parse(localStorage.getItem('forecast'));
+    if (localStorage.getItem("forecast")) {
+      this.forecast = JSON.parse(localStorage.getItem("forecast"));
       return this.forecast;
     }
 
-    return {label: 'WORLD - World', value: 'rain-world'};
+    return {label: "WORLD - World", value: "rain-world"};
   }
 
   getOffset(): number {
