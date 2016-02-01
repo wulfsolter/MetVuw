@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.wulfsolter.metvuw" version="0.0.3" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.wulfsolter.metvuw" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>MetVuw</name>
   <description>A mobile friendly interface for MetVuw.com</description>
   <author email="wulf@wulf.co.nz" href="http://wulf.co.nz/">Wulf Sölter</author>
