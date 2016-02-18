@@ -1,4 +1,11 @@
 {
   "name": "MetVuw",
-  "app_id": "8b9826f5"
+  "app_id": "8b9826f5",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk",
+      "version": "12.41.296.5"
+    }
+  ]
 }
