@@ -1,4 +1,4 @@
-import { App, IonicApp, Platform } from 'ionic-framework/ionic';
+import { App, IonicApp, Platform } from 'ionic-angular';
 
 import {ForecastPage} from './forecast/forecast';
 import {SettingsPage} from './settings/settings';

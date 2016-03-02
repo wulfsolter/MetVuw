@@ -1,11 +1,11 @@
-import {Page, NavController}  from "ionic-framework/ionic";
+import {Page, NavController}  from "ionic-angular";
 import {GlobalSettings}       from "../GlobalSettings/GlobalSettings";
 import {RainScale}            from "../RainScale/RainScale";
 
 @Page({
   templateUrl: "build/forecast/forecast.html",
-  providers: [GlobalSettings],
-  directives: [RainScale],
+  providers:   [GlobalSettings],
+  directives:  [RainScale],
 })
 
 export class ForecastPage {
